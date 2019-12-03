@@ -20,25 +20,25 @@ void fermeture(int address)
 
 boolean boucleAmond()
 {
-  if (lectureBoucle(MECA) == 64)
+  if (lectureBoucle(MECA) == 64  || lectureBoucle(MECA) == 0)
   {
-    return 1;
+    return true;
   }
   else
   {
-    return 0;
+    return false;
   }
 }
 
 boolean boucleAval()
 {
-  if (lectureBoucle(MECA) == 32)
+  if (lectureBoucle(MECA) == 32 || lectureBoucle(MECA) == 0)
   {
-    return 1;
+    return true;
   }
   else
   {
-    return 0;
+    return false;
   }
 }
 
