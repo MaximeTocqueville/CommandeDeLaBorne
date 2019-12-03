@@ -18,21 +18,6 @@ void fermeture(int address)
   delay(500);
 }
 
-int lectureBoucle(int address)
-{
-  int c;
-  Wire.beginTransmission(address);
-  Wire.write(0x78);
-  Wire.endTransmission();
-  
-  Wire.requestFrom(address, 1);
-  while (Wire.available())
-  {
-    c = Wire.read();
-  }
-  return c;
-}
-
 boolean boucleAmond()
 {
   if (lectureBoucle(MECA) == 64)
@@ -55,4 +40,19 @@ boolean boucleAval()
   {
     return 0;
   }
+}
+
+int lectureBoucle(int address)
+{
+  int c;
+  Wire.beginTransmission(address);
+  Wire.write(BARRIERE);
+  Wire.endTransmission();
+  
+  Wire.requestFrom(address, 1);
+  while (Wire.available())
+  {
+    c = Wire.read();
+  }
+  return c;
 }

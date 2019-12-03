@@ -11,34 +11,43 @@ void setup()
 
 void loop()
 {
-  /*if (boucleAmond(MECA)== 1 && boucleAval(MECA) == 0)
+  static int nbVoiture = 0;
+  int tempo = 0, testTempo;
+  if (boucleAmond() == 1 && boucleAval() == 0)
+  {
+    /*if ()
+      {*/
+    ouverture(MECA);
+    testTempo = 1;
+    while (boucleAmond() == 1 && boucleAval() == 0 && testTempo == 1)
     {
-    do
-    {
-      if ()
+      delay(30);
+      tempo++;
+      if (tempo == 1000)
       {
-        while ()
-        {
-
-        }
+        testTempo = 0;
       }
     }
-    while ();
+    delay(20);
+    if (boucleAmond() == 0 && boucleAval() == 1)
+    {
+      if (boucleAmond() == 1)
+      {
+
+      }
+      while (boucleAmond() == 1 && boucleAval() == 1);
       fermeture(MECA);
-    }*/
+    }
+    /*}*/
+  }
   if (boucleAmond() == 0 && boucleAval() == 1)
   {
     ouverture(MECA);
-    do
+    while (boucleAmond() == 0 && boucleAval() == 1);
+    if (boucleAmond() == 1 || boucleAval() == 1)
     {
-      if (boucleAmond() == 1 && boucleAval() == 0)
-      {
-        while (boucleAmond() == 1 || boucleAval() == 1)
-        {
-        }
-      }
+      while (boucleAmond() == 1 || boucleAval() == 1);
     }
-    while (boucleAmond() == 1 || boucleAval() == 1);
     fermeture(MECA);
   }
 }
