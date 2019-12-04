@@ -1,6 +1,8 @@
 #include <Wire.h>
 #include "I2C.h"
 #include "fonctionbarriere.h"
+#include "affiche.h"
+#include "clavier.h"
 
 void setup()
 {
@@ -17,33 +19,39 @@ void loop()
   fermeture(MECA);
   if (boucleAmond() == true && boucleAval() == false)
   {
-    /*if ()
-      {*/
-    ouverture(MECA);
-    testTempo = 1;
-    /*while (boucleAmond() == true && boucleAval() == false && testTempo == 1)
-      {
-      delay(30);
-      tempo++;
-      //Serial.println(tempo);
-      if (tempo == 1000)
-      {
-        testTempo = 0;
-      }
-      }
-      delay(20);*/
-    if (boucleAmond() == true || boucleAval() == true)
+    if (code() == false)
     {
-      while (boucleAmond() == true || boucleAval() == true)
+      Serial.print("ouverture");
+      ouverture(MECA);
+      testTempo = 1;
+      while (boucleAmond() == true && boucleAval() == false && testTempo == 1)
       {
-        test1 = boucleAmond();
-        test2 = boucleAval();
+        delay(30);
+        tempo++;
+        Serial.println(tempo);
+        if (tempo == 1000)
+        {
+          testTempo = 0;
+        }
       }
-    }
-    fermeture(MECA);
-    if (test1 == false && test2 == true)
-    {
-      nbVoiture++;
+      delay(20);
+      if (boucleAmond() == false || boucleAval() == true)
+      {
+        if (boucleAmond() == true || boucleAmond() == true)
+        {
+          while (boucleAmond() == true || boucleAval() == true)
+          {
+            test1 = boucleAmond();
+            test2 = boucleAval();
+          }
+        }
+      }
+      fermeture(MECA);
+      if (test1 == false && test2 == true)
+      {
+        nbVoiture++;
+        Serial.println(nbVoiture);
+      }
     }
   }
   if (boucleAmond() == false && boucleAval() == true)
@@ -62,6 +70,7 @@ void loop()
     if (test1 == true && test2 == false)
     {
       nbVoiture--;
+      Serial.println(nbVoiture);
     }
   }
 }
