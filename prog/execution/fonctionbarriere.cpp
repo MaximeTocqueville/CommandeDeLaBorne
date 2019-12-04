@@ -18,11 +18,35 @@ void fermeture(int address)
   delay(500);
 }
 
+boolean boucleAmond()
+{
+  if (lectureBoucle(MECA) == 64  || lectureBoucle(MECA) == 0)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+boolean boucleAval()
+{
+  if (lectureBoucle(MECA) == 32 || lectureBoucle(MECA) == 0)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
 int lectureBoucle(int address)
 {
   int c;
   Wire.beginTransmission(address);
-  Wire.write(0x78);
+  Wire.write(BARRIERE);
   Wire.endTransmission();
   
   Wire.requestFrom(address, 1);
@@ -31,28 +55,4 @@ int lectureBoucle(int address)
     c = Wire.read();
   }
   return c;
-}
-
-boolean boucleAmond()
-{
-  if (lectureBoucle(MECA) == 64)
-  {
-    return 1;
-  }
-  else
-  {
-    return 0;
-  }
-}
-
-boolean boucleAval()
-{
-  if (lectureBoucle(MECA) == 32)
-  {
-    return 1;
-  }
-  else
-  {
-    return 0;
-  }
 }
