@@ -24,7 +24,6 @@ int VerificationLigne() {
 
   while (Wire.available()) {
     c = Wire.read();
-   // delay(20);
   }
   return c;
 }
@@ -38,7 +37,6 @@ int VerificationColonne() {
   Wire.requestFrom(ADRESSE, 1);
   while (Wire.available()) {
     d = Wire.read();
-    //delay(20);
   }
   return d;
 }
@@ -107,6 +105,7 @@ bool code()
   char code[5] = {"1234"};
   for (int i = 0; i < 4; i++)
   {
+    delay(80);
     if (ToucheAppuye() == false)
     {
       ligne = VerificationLigne();

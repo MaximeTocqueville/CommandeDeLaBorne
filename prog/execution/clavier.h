@@ -8,8 +8,6 @@ bool ToucheAppuye();
 int VerificationLigne();
 int VerificationColonne();
 char LireTouche(int ligne,int colonne);
-int OuvrirBarriere();
-int VerifierCode();
 bool code();
 
 #endif 

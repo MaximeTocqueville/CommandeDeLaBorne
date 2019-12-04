@@ -14,43 +14,52 @@ void setup()
 void loop()
 {
   static int nbVoiture = 10;
-  int tempo = 0, testTempo;
+  int tempo = 0, testTempo, essaie = 3;
   bool test1, test2;
-  fermeture(MECA);
+  //fermeture(MECA);
   if (boucleAmond() == true && boucleAval() == false)
   {
-    if (code() == false)
+    while (essaie != 0)
     {
-      Serial.print("ouverture");
-      ouverture(MECA);
-      testTempo = 1;
-      while (boucleAmond() == true && boucleAval() == false && testTempo == 1)
+      if (code() == false)
       {
-        delay(30);
-        tempo++;
-        Serial.println(tempo);
-        if (tempo == 1000)
+        Serial.print("ouverture");
+        ouverture(MECA);
+        testTempo = 1;
+        while (boucleAmond() == true && boucleAval() == false && testTempo == 1)
         {
-          testTempo = 0;
-        }
-      }
-      delay(20);
-      if (boucleAmond() == false || boucleAval() == true)
-      {
-        if (boucleAmond() == true || boucleAmond() == true)
-        {
-          while (boucleAmond() == true || boucleAval() == true)
+          delay(30);
+          tempo++;
+          Serial.println(tempo);
+          if (tempo == 1000)
           {
-            test1 = boucleAmond();
-            test2 = boucleAval();
+            testTempo = 0;
           }
         }
+        delay(20);
+        if (boucleAmond() == false || boucleAval() == true)
+        {
+          if (boucleAmond() == true || boucleAmond() == true)
+          {
+            while (boucleAmond() == true || boucleAval() == true)
+            {
+              test1 = boucleAmond();
+              test2 = boucleAval();
+            }
+          }
+        }
+        essaie = 0;
+        fermeture(MECA);
+        if (test1 == false && test2 == true)
+        {
+          nbVoiture++;
+          Serial.println(nbVoiture);
+        }
       }
-      fermeture(MECA);
-      if (test1 == false && test2 == true)
+      else
       {
-        nbVoiture++;
-        Serial.println(nbVoiture);
+        essaie--;
+        Serial.println("faux");
       }
     }
   }
