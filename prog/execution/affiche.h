@@ -2,19 +2,23 @@
 #ifndef AFFICHE_H
 #define AFFICHE_H
 
-#include "Arduino.h"
 
+#include "Arduino.h"
+#define AFFICHEUR 0x3B
 #define LIGNE1 0x00
 #define LIGNE2 0x40
 
-#define MESSAGE1 "Bonjour"
-#define MESSAGE2 "Entrez code ou insere carte SVP"
-#define MESSAGE3 "Code correct"
-#define MESSAGE4 "Bienvenu"
-#define MESSAGE7 "carte non valide"
-#define MESSAGE8 "Quittez la place"
+#define MESSAGE1 "   Bonjour      "//
+#define MESSAGE2 "Entrez code ou  "//
+#define MESSAGE3 "insere carte SVP"//
+#define MESSAGE4 "carte non valide"
+#define MESSAGE5 "Quittez la place"
+#define MESSAGE6 "   2eme essaie  "
+#define MESSAGE7 "derniere essaie "
+#define MESSAGE8 "  Code correct  "
 #define MESSAGE9 "code non valide "
 #define MESSAGE10 "Quittez la place"
+#define MESSAGE11 "il y a "
 
 
 
